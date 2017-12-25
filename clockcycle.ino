@@ -1,3 +1,6 @@
+// AUTHOR: CaptainGector
+// DATE: 12-24-17
+
 const int clockPin = 4; // On the esp32, it's the 7th 
                         // pin up from the right side of  
                         // the usb connector
