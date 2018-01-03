@@ -1,5 +1,8 @@
 # BinaryWatch
+My first project designing and creating *everything*. 
 
-My binary watch project - code to come
-STL files to come
-sch and brd files to come
+Current board rev: 2.1
+
+Designed on: eagleCAD
+
+code is currently being developed
