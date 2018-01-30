@@ -64,6 +64,25 @@ void writeData(int hold = wait){
   digitalWrite(dataP, LOW);  // turns datapin off
 }
 
+void checkHour(){
+  int hourButton = digitalread(inHour);
+  if(hourButton = HIGH){
+    hour++;
+    second = 0;
+    delay(5000);
+  } else {
+  }
+}
+
+void checkMin(){
+  int minButton = digitalRead(inMinute);
+  if(minButton = HIGH){
+    minute++;
+    second = 0;
+    delay(5000);
+  } else {
+  }
+}
 
 /* display */
 
@@ -141,6 +160,9 @@ void loop(){
   Serial.print("Minutes: ");
   Serial.println(minute);
 
+  Serial.print("Hours: ");
+  Serial.print(hour);
+
   // timing
   static unsigned long lastTick = 0;
 
@@ -187,8 +209,10 @@ void loop(){
   clock();             // clock the shift registers to display
   enableOutput(true);  // start up the output
   delay(1);            // delay 1 second
+  //checkHour();
+  //checkMin();
 
-  // buttons input
+  /* // buttons input
 
   int hourButton = digitalRead(inHour);
   if(hourButton = HIGH){
