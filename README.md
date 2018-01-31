@@ -23,12 +23,12 @@ CURRENT TASK: The basis code is finished! Onto deep sleep research and finishing
 
 Blog Posts following development:
 
-Basis:https://thalliatree.wordpress.com/2017/12/25/74hc595-texas-instruments-shift-registers/
+Basis:   https://thalliatree.wordpress.com/2017/12/25/74hc595-texas-instruments-shift-registers/
 
-Intro: https://thalliatree.wordpress.com/2018/01/01/project-hype-binary-wristwatch/
+Intro:   https://thalliatree.wordpress.com/2018/01/01/project-hype-binary-wristwatch/
 
-Breadboard Hardware (with Uno): https://thalliatree.wordpress.com/2018/01/26/atmega328p-microcontroller-74hc595-shift-register-setup-and-test-binary-watch/
+Breadboard Hardware (with Uno):   https://thalliatree.wordpress.com/2018/01/26/atmega328p-microcontroller-74hc595-shift-register-setup-and-test-binary-watch/
 
-Code - Part 1: https://thalliatree.wordpress.com/2018/01/29/code-part-1-binary-watch/
+Code - Part 1:   https://thalliatree.wordpress.com/2018/01/29/code-part-1-binary-watch/
 
-Code - Part 2: https://thalliatree.wordpress.com/2018/01/31/code-part-2-binary-watch/
+Code - Part 2:   https://thalliatree.wordpress.com/2018/01/31/code-part-2-binary-watch/
