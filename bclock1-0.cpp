@@ -2,14 +2,14 @@
  * written by: thallia
  * almost copied from Gector's binary clock
  * on the day: 1-27-18
- * last edit: 1-28-18
+ * last edit: 1-29-18
  */
 
 /* ------ Variables ------ */
 
 // physical pin numbers to help me remember what's what
-const int inHour = 7; // debatable
-const int inMinute = 8; // debatable too, need to find
+const int inHour = 7; // set up pullup resistors
+const int inMinute = 8; // 
 const int outputEN = 2;
 const int clockP = 3;
 const int latchP = 4;
@@ -66,7 +66,7 @@ void writeData(int hold = wait){
 
 void checkHour(){
   int hourButton = digitalread(inHour);
-  if(hourButton = HIGH){
+  if(hourButton == LOW){ // LOW because pull-up resistors
     hour++;
     second = 0;
     delay(5000);
@@ -76,7 +76,7 @@ void checkHour(){
 
 void checkMin(){
   int minButton = digitalRead(inMinute);
-  if(minButton = HIGH){
+  if(minButton == LOW){ // LOW because pull-up resistors
     minute++;
     second = 0;
     delay(5000);
@@ -147,10 +147,8 @@ void setup(){
   pinMode(latchP, OUTPUT);
   pinMode(dataP, OUTPUT);
 
-  // input pins
-  pinMode(inHour, INPUT);
-  pinMode(inMinute, INPUT);
-
+  pinMode(inHour, INPUT_PULLUP); // configures inHour and inMinute to be input pins and activate the pullup resistors.
+  pinMode(inMinute, INPUT_PULLUP);
 
 }
 
@@ -211,22 +209,6 @@ void loop(){
   delay(1);            // delay 1 second
   //checkHour();
   //checkMin();
-
-  /* // buttons input
-
-  int hourButton = digitalRead(inHour);
-  if(hourButton = HIGH){
-    hour++;
-    second = 0;
-    delay(250);
-  }
-
-  int minButton = digitalRead(inMinute);
-  if(minButton = HIGH){
-    minute++;
-    second = 0;
-    delay(250);
-  }
 
   // Deep Sleep functionality
 
