@@ -31,7 +31,7 @@ Digital Pin 8 (PCINT0/CLKO/ICP1) PB0 **to** Button 2
 - Pin Q5 = 1
 - Pin Q6 = 2
 - Pin Q7 = 4
-(second shift register)
+- (second shift register)
 - Pin Q0 = 8
 - Pin Q1 = 16
 - Pin Q2 = 32
