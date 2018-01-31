@@ -1,6 +1,5 @@
 # ATMega328P Pinout
 ## Connecting what pins from the ATMega to the shift registers?
-### author: thallia
 
 ATMEGA **to** 74HC595
 
