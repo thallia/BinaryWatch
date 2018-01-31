@@ -1,6 +1,6 @@
 /*
  * written by: thallia
- * almost copied from Gector's binary clock
+ * almost copied from Gector's binary clock - additions for pullup registers, new functions for buttons, and soon-to-be deep sleep functions
  * on the day: 1-27-18
  * last edit: 1-29-18
  */
@@ -8,8 +8,8 @@
 /* ------ Variables ------ */
 
 // physical pin numbers to help me remember what's what
-const int inHour = 7; // set up pullup resistors
-const int inMinute = 8; // 
+const int inHour = 7;
+const int inMinute = 8;
 const int outputEN = 2;
 const int clockP = 3;
 const int latchP = 4;
@@ -69,7 +69,7 @@ void checkHour(){
   if(hourButton == LOW){ // LOW because pull-up resistors
     hour++;
     second = 0;
-    delay(5000);
+    delay(250);
   } else {
   }
 }
@@ -79,7 +79,7 @@ void checkMin(){
   if(minButton == LOW){ // LOW because pull-up resistors
     minute++;
     second = 0;
-    delay(5000);
+    delay(250);
   } else {
   }
 }
@@ -204,11 +204,11 @@ void loop(){
   minDisplay(minute);  // display the minutes with the minute value
   hourDisplay(hour);   // display the hours with the ticking hour value
   latch();             // latch data consistently
-  clock();             // clock the shift registers to display
+  ticktock();          // clock the shift registers to display
   enableOutput(true);  // start up the output
   delay(1);            // delay 1 second
-  //checkHour();
-  //checkMin();
+  checkHour();         // check to make sure inHour isn't being pushed :: otherwise, increment the hour number (1-12)
+  checkMin();          // check to make sure inMinute isn't being pushed :: otherwise, increment the minute number (0-59)
 
   // Deep Sleep functionality
 
