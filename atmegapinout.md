@@ -35,3 +35,11 @@ Digital Pin 8 (PCINT0/CLKO/ICP1) PB0 **to** Button 2
 - Pin Q0 = 8
 - Pin Q1 = 16
 - Pin Q2 = 32
+
+
+# GND and Vcc
+
+- AREF to Vcc
+- AVcc to Vcc
+- GND to GND
+- Vcc to 10kOhm resistor to RESET
