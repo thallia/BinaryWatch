@@ -43,3 +43,7 @@ Digital Pin 8 (PCINT0/CLKO/ICP1) PB0 **to** Button 2
 - AVcc to Vcc
 - GND to GND
 - Vcc to 10kOhm resistor to RESET
+
+# External Clock
+
+- Two GNDed 22pF capacitors to 16MHz crystal to XTAL1 and XTAL2
