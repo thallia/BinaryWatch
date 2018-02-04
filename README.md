@@ -8,18 +8,18 @@ Current board rev: *3.1*
   * coin cell battery
   * LEDs x10
   * 16MHz external clock
+  * 2 22pF capacitors
   * two buttons for configuring time
   * one button for sleep/wakeup
   * jumper wires
-  * resistors (10k, 220k)
+  * resistors (1 10K, 10 220K)
   * arduino uno (for easier programming in the beginning)
 
 PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** The basis code is finished! Onto deep sleep research and finishing up the hardware setup (specifically hooking up the atmega processor by itself).
-
+**CURRENT TASK:** Hardware setup complete. Next, research deep sleep modules and implement before mock setup with coin cell battery. Start designing schematic.
 
 Blog Posts following development:
 
@@ -32,3 +32,5 @@ Blog Posts following development:
 **Code - Part 1:**   https://thalliatree.wordpress.com/2018/01/29/code-part-1-binary-watch/
 
 **Code - Part 2:**   https://thalliatree.wordpress.com/2018/01/31/code-part-2-binary-watch/
+
+**Breadboard Hardware (without Uno):** https://thalliatree.wordpress.com/2018/02/04/prepping-the-atmega328p-bootloader-burn-fuse-byte-programming-and-hardware-test-binary-watch/
