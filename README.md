@@ -3,16 +3,16 @@ My first project designing and creating *everything*.
 
 Current board rev: *3.1*
 
-  * atmega328p
-  * SN74HC595N x2
+  * atmega328p-pu
+  * sn74hc595n x2
   * coin cell battery
-  * LEDs x10
+  * LEDs x20 (10 for breadboard, 10 for mock thru-hole)
   * 16MHz external clock
   * 2 22pF capacitors
   * two buttons for configuring time
   * one button for sleep/wakeup
   * jumper wires
-  * resistors (1 10K, 10 220K)
+  * resistors (1 10K, 10 220, 10 20k)
   * arduino uno (for easier programming in the beginning)
 
 PCB designed on: eagleCAD
