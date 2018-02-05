@@ -19,7 +19,7 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Hardware setup complete. Next, research deep sleep modules and implement before mock setup with coin cell battery. Start designing schematic.
+**CURRENT TASK:** Finished early schematic design, confirmed use of coin cell battery. Next, implement low power/deep sleep and redesign schematic on EagleCAD. Start sketching out PCB layout.
 
 Blog Posts following development:
 
@@ -34,3 +34,5 @@ Blog Posts following development:
 **Code - Part 2:**   https://thalliatree.wordpress.com/2018/01/31/code-part-2-binary-watch/
 
 **Breadboard Hardware (without Uno):** https://thalliatree.wordpress.com/2018/02/04/prepping-the-atmega328p-bootloader-burn-fuse-byte-programming-and-hardware-test-binary-watch/
+
+**Mock Up PCB with coin cells + early schematic:** https://thalliatree.wordpress.com/2018/02/05/mock-up-pcb-binary-watch/
