@@ -19,7 +19,7 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Finished early schematic design, confirmed use of coin cell battery. Next, implement low power/deep sleep and redesign schematic on EagleCAD. Start sketching out PCB layout.
+**CURRENT TASK:** Finished early schematic design, confirmed use of coin cell battery. Next, implement low power/deep sleep and redesign schematic on EagleCAD. Start sketching out PCB layout. Schematic rev1 on easyEDA finished.
 
 Blog Posts following development:
 
