@@ -199,7 +199,6 @@ void loop(){
 
   // rest of things
   enableOutput(false); // disable output to display the things
-
   ampm(halfDay);       // checks to see whether halfDay = 1, if so, write the next data
   minDisplay(minute);  // display the minutes with the minute value
   hourDisplay(hour);   // display the hours with the ticking hour value
