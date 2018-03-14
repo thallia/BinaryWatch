@@ -7,7 +7,8 @@ Current board rev: *3.1*
   * sn74hc595n x2
   * coin cell battery
   * LEDs x20 (10 for breadboard, 10 for mock thru-hole)
-  * 16MHz external clock
+  * 16MHz external crystal
+  * 32.768kHz external crystal
   * 2 22pF capacitors
   * two buttons for configuring time
   * one button for sleep/wakeup
@@ -19,20 +20,20 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Finished early schematic design, confirmed use of coin cell battery. Next, implement low power/deep sleep and redesign schematic on EagleCAD. Start sketching out PCB layout. Schematic rev1 on easyEDA finished.
+**CURRENT TASK:** Test out moving the clock source from external to AS2/Timer2. This way I will be able to enable the sleep modes to reduce power consumption.
 
 Blog Posts following development:
 
-**Basis:**   https://thalliatree.wordpress.com/2017/12/25/74hc595-texas-instruments-shift-registers/
+**Basis:**   https://www.thalliatree.net/posts/74dc595-texas-instruments-shift-reg-esp32.html
 
-**Intro:**   https://thalliatree.wordpress.com/2018/01/01/project-hype-binary-wristwatch/
+**Intro:**   https://www.thalliatree.net/posts/project-hype-binary-watch.html
 
-**Breadboard Hardware (with Uno):**   https://thalliatree.wordpress.com/2018/01/26/atmega328p-microcontroller-74hc595-shift-register-setup-and-test-binary-watch/
+**Breadboard Hardware (with Uno):**   https://www.thalliatree.net/posts/atmega328p-microcontroller-74hc595-shift-reg-setup-bw.html
 
-**Code - Part 1:**   https://thalliatree.wordpress.com/2018/01/29/code-part-1-binary-watch/
+**Code - Part 1:**   https://www.thalliatree.net/posts/code-p1-bw.html
 
-**Code - Part 2:**   https://thalliatree.wordpress.com/2018/01/31/code-part-2-binary-watch/
+**Code - Part 2:**   https://www.thalliatree.net/posts/code-p2-bw.html
 
-**Breadboard Hardware (without Uno):** https://thalliatree.wordpress.com/2018/02/04/prepping-the-atmega328p-bootloader-burn-fuse-byte-programming-and-hardware-test-binary-watch/
+**Breadboard Hardware (without Uno):** https://www.thalliatree.net/posts/prepping-the-atmega-hardware-test-bw.html
 
-**Mock Up PCB with coin cells + early schematic:** https://thalliatree.wordpress.com/2018/02/05/mock-up-pcb-binary-watch/
+**Mock Up PCB with coin cells + early schematic:** https://www.thalliatree.net/posts/mock-up-pcb-bw.html

@@ -15,6 +15,7 @@ Digital Pin 7 (PCINT23/AIN1) PD7 **to** Button 1
 
 Digital Pin 8 (PCINT0/CLKO/ICP1) PB0 **to** Button 2
 
+Digital Pin 9 - button 3?
 
 
 # Shift Register I/O to LED
@@ -43,6 +44,7 @@ Digital Pin 8 (PCINT0/CLKO/ICP1) PB0 **to** Button 2
 - AVcc to Vcc
 - GND to GND
 - Vcc to 10kOhm resistor to RESET
+- Master Reclear to Vcc
 
 # External Clock
 
