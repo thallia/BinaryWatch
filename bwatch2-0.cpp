@@ -4,10 +4,12 @@
  * Official tuned up and cleaned up binary watch code. Prepped for disabling
  * a lot of modules.
  * created: 3-12-18
- * last edit: 3-12-18
+ * last edit: 3-13-18
  *
  *
  */
+
+#include <avr/power.h>
 
 /* ~~~ Variables ~~~ */
 const int inHour = 7;      // hour button
@@ -181,7 +183,25 @@ void setup(){
   Serial.begin(9600);
 
   /* put all the disabled modules HERE */
-  ///                                 ///
+
+  // Disabled Module: Analog to Digital Converter (ADC)
+  power_adc_disable();
+
+  // Disabled Module: Serial Peripheral Interface
+  // power_spi_disable();
+
+  // Disabled Module: Timer1 and Timer2 (millis() only depends on Timer0)
+  // power_timer1_disable();
+  // power_timer2_disable();
+
+  // Disabled Module: Two-Wire Interface (TWI) (does this actually disable anything in the code?)
+  // power_twi_disable();
+
+  // Disabled Module: USART
+  // power_usart0_disable();
+
+  // Disabled Module: Brown Out Detector (BOD)
+  // command line: avrdude -c ? -p atmega328p -U efuse:w:0x07:m
 
   pinMode(clockP, OUTPUT);
   pinMode(outputEN, OUTPUT);
