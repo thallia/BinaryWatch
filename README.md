@@ -20,7 +20,8 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Test out moving the clock source from external to AS2/Timer2. This way I will be able to enable the sleep modes to reduce power consumption.
+**CURRENT TASK:** Order the RTC IC from adafruit and hook it up to current circuit. Once that's done I can test bwatch3-0 to see if anything in there works, then debug the crap out of it. Schematic is mostly finished.
+
 
 Blog Posts following development:
 
