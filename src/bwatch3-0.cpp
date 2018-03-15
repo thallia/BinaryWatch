@@ -47,8 +47,8 @@ int count = 0;
 // if false, enableOutput writes OFF signal to the OE gate.
 void enableOutput(boolean state){
   if(state){
-    digitalWrite(outputEN, LOW); // OE is NOTed, which is why we write LOW to
-                                 // trigger a HIGH signal.
+    digitalWrite(outputEN, LOW); // OE is NOTed, which is why we write HIGH to
+                                 // trigger a LOW signal.
   } else{
     digitalWrite(outputEN, HIGH);
   }
