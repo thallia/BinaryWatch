@@ -5,42 +5,32 @@
  * access the timing, change the timing, etc.
  *
  * created: 3-14-17
- * last edit: 3-14-17
+ * last edit: 3-15-17
  *
  */
 
 #include <avr/sleep.h>
-#include <RTClib.h> // real time clock library
+#include <MD_DS1307.h>
 
-RTClib rtc; // creates an object instance so I can distinguish between
-            // what's an rtc function and arduino function
+// No need to create object instance, it's already done in the header file
 
 const int inHour = 7;     // hour button
 const int inMinute = 8;   // minute button
 const int inDisplay = 2;  // display button
 // find new OE pin
-// const int outputEN = 2;   // enable chip signal
+const int outputEN = 6;   // enable chip signal
 const int clockP = 3;     // clock signal pin
 const int latchP = 4;     // latch signal pin
 const int dataP = 5;      // data write pin
 
 // Default date/time settings whenever program starts
-// time
-const byte seconds = 0;
-const byte minutes = 0;
-const byte hours = 12;
+int seconds = 0;
+int minutes = 0;
+int hours = 12;
 
-// date - jic?
-const byte day = 14;
-const byte month = 3;
-const byte year = 18;
-
-// for loop
-int count = 0;
-
+int count = 0; // for counting at the end
 
 /* -------- FUNCTIONS -------- */
-
 
 // Boolean --> Void / pin signal
 // If true, enableOutput writes an ON signal to the OE gate, allowing LED output
@@ -74,8 +64,11 @@ void writeData(){
 void checkHour(){
   int hourButton = digitalRead(inHour);
   if(hourButton == LOW){
-    hours++;
-    seconds = 0;
+    RTC.readTime();
+    hours = RTC.h;
+    RTC.h = hours++;
+    RTC.s = 0;
+    RTC.writeTime();
     delay(250);
   }
 }
@@ -83,8 +76,11 @@ void checkHour(){
 void checkMin(){
   int minButton = digitalRead(inMinute);
   if(minButton == LOW){
-    minutes++;
-    seconds = 0;
+    RTC.readTime();
+    minutes = RTC.m;
+    RTC.m = minutes++;
+    RTC.s = 0;
+    RTC.writeTime();
     delay(250);
   }
 }
@@ -107,7 +103,7 @@ void writeHour(int hour){
 void hourDisplay(int hour){
   if(hour >= 1){
     if(hour > 12){
-      int newHour = hour - 12
+      int newHour = hour - 12;
         writeHour(newHour);
     } else {
       writeHour(hour);
@@ -128,25 +124,14 @@ void minDisplay(int minute){
   }
 }
 
-// no input --> no output
-// check the display button to see if it has been pressed. If true, display the
-// LEDs.
-void checkDisp(){
-  int disButton = digitalRead(inDis);
-  if(disButton == LOW){
-    displayData();
-  } else {
-  }
-}
-
 void dispData(){
-  int hour = rtc.getHours();     // will these work with the scope?
-  int minute = rtc.getMinutes(); // ^^^
+  int hour = RTC.h;
+  int minute = RTC.m;
 
   enableOutput(false);
   minDisplay(minute);
   hourDisplay(hour);
-  latchTick(hold);
+  latchTick();
   enableOutput(true);
   delay(1);
   checkHour();
@@ -162,6 +147,10 @@ void wakeUp(){
 void setup(){
   Serial.begin(9600);
 
+  if (RTC.isRunning()){
+    Serial.print("RTC clock is fully functional.");
+      }
+
   pinMode(clockP, OUTPUT);
   pinMode(outputEN, OUTPUT);
   pinMode(latchP, OUTPUT);
@@ -169,12 +158,14 @@ void setup(){
 
   pinMode(inHour, INPUT_PULLUP);
   pinMode(inMinute, INPUT_PULLUP);
-  pinMode(inDis, INPUT_PULLUP);
+  pinMode(inDisplay, INPUT_PULLUP);
 
-  rtc.begin();      // initializes RTC is happening
-  rtc.setTime(hours, minutes, seconds);     // sets to default time setup
-                                            // 1200
-  // attachInterrupt(0, wakeUp, LOW); // why do we do this in setup?
+  // defaults for RTC time
+  RTC.h = hours;
+  RTC.m = minutes;
+  RTC.s = seconds;
+  RTC.writeTime();     // sets to default time setup
+
 }
 
 void sleepNow(){
@@ -204,10 +195,3 @@ void loop(){
   }
 
 }
-
-
-
-
-
-
-
