@@ -3,9 +3,9 @@ My first project designing and creating *everything*.
 
 Current board rev: *3.1*
 
+Supplies for breadboard testing:
   * atmega328p-pu
   * sn74hc595n x2
-  * coin cell battery
   * LEDs x20 (10 for breadboard, 10 for mock thru-hole)
   * 16MHz external crystal
   * 32.768kHz external crystal
@@ -15,12 +15,23 @@ Current board rev: *3.1*
   * jumper wires
   * resistors (1 10K, 10 220, 10 20k)
   * arduino uno (for easier programming in the beginning)
+  
+Supplies for PCB:
+  * atmega328p-pu
+  * 74hc595 SMD shift registers x2
+  * coin cell battery + battery holder
+  * LEDs SMD x10
+  * 32.768kHz SMD crystal
+  * SMD capacitors x2
+  * 3 buttons
+  * 10k SMD resistors x11
+  * PCB
 
 PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Order the RTC IC from adafruit and hook it up to current circuit. Once that's done I can test bwatch3-0 to see if anything in there works, then debug the crap out of it. Schematic is mostly finished.
+**CURRENT TASK:** Bwatch3-0 compiles, so most of the code should be accurate. Once the DS1307 RTC is here I can test it out on the hardware side of things.
 
 
 Blog Posts following development:

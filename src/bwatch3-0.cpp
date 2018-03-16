@@ -169,7 +169,7 @@ void setup(){
 }
 
 void sleepNow(){
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN); // sets the sleep mode to power down
+  set_sleep_mode(SLEEP_MODE_PWR_SAVE); // sets the sleep mode to power down
   sleep_enable(); // enables sleep register
 
   attachInterrupt(0, wakeUp, LOW); // attaches interrupt to execute when
