@@ -49,3 +49,5 @@ Blog Posts following development:
 **Breadboard Hardware (without Uno):** https://www.thalliatree.net/posts/prepping-the-atmega-hardware-test-bw.html
 
 **Mock Up PCB with coin cells + early schematic:** https://www.thalliatree.net/posts/mock-up-pcb-bw.html
+
+**Code - Part 3:** https://www.thalliatree.net/posts/code-p3-bw.html
