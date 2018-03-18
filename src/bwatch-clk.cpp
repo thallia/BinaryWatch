@@ -1,3 +1,11 @@
+/*
+*
+* written by: thallia
+* date: 3-14-17
+* Specifically only using the 32kHz clock, adjusting the hardware to fit it.
+*
+*
+*/
 #include <avr/sleep.h>
 #include <avr/power.h>
 
