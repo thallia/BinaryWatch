@@ -11,11 +11,12 @@ Digital Pin 4 (PCINT20/XCK/T0) PD4 **to** SH_CP (latch pin) pin 11
 
 Digital Pin 5 (PCINT21/OC0B/T1) PD5 **to** DS (serial data) pin 14
 
+Digital Pin 6 - - - - - - - - IN TESTING
+
 Digital Pin 7 (PCINT23/AIN1) PD7 **to** Button 1
 
 Digital Pin 8 (PCINT0/CLKO/ICP1) PB0 **to** Button 2
 
-Digital Pin 9 - button 3?
 
 
 # Shift Register I/O to LED
@@ -45,7 +46,12 @@ Digital Pin 9 - button 3?
 - GND to GND
 - Vcc to 10kOhm resistor to RESET
 - Master Reclear to Vcc
+- Two 0.1uF capacitors connecting GND and Vcc on both sides (Vcc/GND and AVcc/GND)
 
 # External Clock
 
 - Two GNDed 22pF capacitors to 16MHz crystal to XTAL1 and XTAL2
+
+OR
+
+- Two GNDed 22pF caps to 32.768kHz crystal to XTAL1 and XTAL2
