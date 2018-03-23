@@ -3,13 +3,14 @@ My first project designing and creating *everything*.
 
 Current board rev: *3.1*
 
-Supplies for breadboard testing:
+Supplies I went through for breadboard testing:
   * atmega328p-pu
   * sn74hc595n x2
   * LEDs x20 (10 for breadboard, 10 for mock thru-hole)
   * 16MHz external crystal
   * 32.768kHz external crystal
   * 2 22pF capacitors
+  * 2 0.1uF capacitors
   * two buttons for configuring time
   * one button for sleep/wakeup
   * jumper wires
@@ -18,11 +19,14 @@ Supplies for breadboard testing:
   
 Supplies for PCB:
   * atmega328p-pu
+  * 28 DIP socket
+  * in development: SMD atmega328p
   * 74hc595 SMD shift registers x2
   * coin cell battery + battery holder
   * LEDs SMD x10
   * 32.768kHz SMD crystal
-  * SMD capacitors x2
+  * SMD capacitors 22pF x2
+  * 2 SMD decoupling capacitors 0.1uF
   * 3 buttons
   * 10k SMD resistors x11
   * PCB
@@ -31,7 +35,7 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Bwatch3-0 compiles, so most of the code should be accurate. Once the DS1307 RTC is here I can test it out on the hardware side of things.
+**CURRENT TASK:** the stuff got here, in the midst of setting fuse bytes for the ATmega328P to work with an external oscillator (as well as the internal 8MHz) so I can start working with the 32.768kHz crystal. This will allow me to try out my code for it XD
 
 
 Blog Posts following development:

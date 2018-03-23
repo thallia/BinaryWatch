@@ -4,7 +4,7 @@
  * altered 1 line at the bottom by thallia
  *
  *
- */ 
+ */
 
 #include <avr/sleep.h>
 #include <avr/power.h>
@@ -60,5 +60,6 @@ void loop()
 
   // we awoke! pulse the clock hand
   digitalWrite (tick, HIGH);
+  digitalWrite (tick, LOW);
 
   }  // end of loop

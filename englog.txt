@@ -1,0 +1,213 @@
+3-22-18
+
+I am about ready to throw fuse bytes at the wall, go buy a gun, put the microcontroller in an interrogation room, and then shoot it if it doesn't work.
+
+....anyway.
+
+Last night I messed around with optiLoader and avrdude, but I got tons of errors with both. I'm gonna start from the beginning, building the circuit over and
+re-going through the errors.
+
+lesdodis.
+
+I set up the circuit according to the diagram on my blog: http://thalliatree.net/posts/prepping-the-atmega-hardware-test-bw.html
+Just adding the external 16MHz clock, because the ATmega328p doesn't work without
+it.
+
+I'm using the Arduino UNO to serially program the fuse bytes.
+
+I ran:
+
+avrdude -c arduino -p m328p -P /dev/ttyACM0 -v -U lfuse:r:h
+
+which outputted this:
+
+Using Port                    : /dev/ttyACM0                                  
+         Using Programmer              : arduino 
+         AVR Part                      : ATmega328P 
+         Chip Erase delay              : 9000 us
+         PAGEL                         : PD7
+         BS2                           : PC
+         RESET disposition             : dedicate
+         RETRY pulse                   : SCK
+         serial program mode           : yes
+         parallel program mode         : yes
+         Timeout                       : 200
+         StabDelay                     : 100
+         CmdexeDelay                   : 25
+         SyncLoops                     : 32
+         ByteDelay                     : 0
+         PollIndex                     : 3
+         PollValue                     : 0x53
+         Memory Detail                 :
+
+Programmer Type : Arduino
+         Description     : Arduino
+         Hardware Version: 3
+         Firmware Version: 4.4
+         Vtarget         : 0.3 V
+         Varef           : 0.3 V
+         Oscillator      : 28.800 kHz
+         SCK period      : 3.3 us
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1e950f
+avrdude: Expected signature for ATmega328P is 1E 95 14
+         Double check chip, or use -F to override this check.
+
+avrdude done.  Thank you.
+
+Alright, so looks like 0x0f vs 0x14 is messing up the reading of the device...
+which is strange. Hm.
+
+One answer from researching suggested to changed the baud rate.
+
+"The thing that determines which you "talk to" is the baud rate. I believe that when you attempt to use ArduinoISP you need "-b 19200" in your avrdude command so it won't interact with the bootloader (Optiboot uses 115200 I think)."
+
+I added "-b 19200" into my avrdude command, which produced the error:
+
+avrdude: ser_open(): can't set attributes for device "/dev/ttyS0": Inappropriate ioctl for device
+
+...um wat.
+
+Looking further in that same forum, it appears the person having problems stated
+that you can't power the chip you're programming with the same Arduino that is
+programming it. Going to try an external power source for the chip before
+exploring the "inappropriate ioctl" error.
+
+With externally powering the chip, I made some progress! In which this was:
+
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 1 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 2 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 3 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 4 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 5 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 6 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 7 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 8 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 9 of 10: not in sync: resp=0x00
+avrdude: stk500_recv(): programmer is not responding
+avrdude: stk500_getsync() attempt 10 of 10: not in sync: resp=0x00
+
+Mk then. This person linked to another post which covered that through USB, the
+arduino UNO doesn't get enough power to read fuse bytes (very weird bug in the
+hardware apparently), so I'm going to try feeding the external GND and VCC into
+the arduino UNO as well.
+
+That didn't do anything, same error received.
+
+Doing some more research, this problem could be a multitude of things:
+
+* No communication between the PC and arduino
+* ATMega328p UART/bootloader
+* something is connected to RX/0 pin
+
+* The AVR has been fused to need a very slow clock
+* the AVR has its reset-disable fuse activated in its high fuse byte,
+* the AVR has been fused to require an external clock or an external crystal.
+
+I know the cord isn't faulty, I can program other boot-loaded ATmegas with it.
+Nothing is connected to the RXD0 pin, so I can rule that out as well.
+
+I know I never fuse-byte programmed it, so the only remaining option could
+be the bootloader.
+
+I went about using OptiBoot to burn the bootloader on the ATmega328p, this
+could potentially be the problem. I have some empty ATMegas, so I'm going to
+attempt burning the regular bootloader on those to see if I can get any different
+response.
+
+
+While getting it set up, I ran into the error of 'missing 'bootloader.tool' configuration parameter.
+I found the solution here:
+https://github.com/arduino/Arduino/wiki/Arduino-Hardware-Cores-migration-guide-from-1.0-to-1.6
+
+So I need to add the lines:
+
+arduino328bb.bootloader.tool=arduino:avrdude
+
+to boards.txt. After that, Things *started* to run! Almost.
+I got the error of an incorrect file path, so it couldn't read the hex file. *hunts down file*
+incorrect file path: ~/Downloads/arduino-1.8.5-linux64/arduino-1.8.5/hardware/arduino/avr/bootloaders/ATmegaBOOT_168_atmega328_pro_8MHz.hex
+
+correct file path: ~/Downloads/arduino-1.8.5-linux64/arduino-1.8.5/hardware/arduino/avr/bootloaders/atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex
+
+Instead of changing the path, I just moved the file to the directory it wanted.
+
+Believe it or not, IT WORKED. WOOO.
+
+Alright, this is *great*. One step closer to figuring this thing out.
+
+With the newly bootloaded ATMega328p, I ran the command again:
+
+avrdude -c arduino -p m328p -P /dev/ttyACM0 -b 19200 -U lfuse:r:-:h
+
+which produced this error:
+
+avrdude: stk500_getparm(): (a) protocol error, expect=0x14, resp=0x14
+
+avrdude: stk500_getparm(): (a) protocol error, expect=0x14, resp=0x01
+avrdude: stk500_initialize(): (a) protocol error, expect=0x14, resp=0x10
+avrdude: initialization failed, rc=-1
+         Double check connections and try again, or use -F to override
+         this check.
+
+avrdude: stk500_disable(): unknown response=0x12
+
+;-;
+
+I took out the "-b 19200" flag/value, and ran the command again, which returned:
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1e950f
+avrdude: Expected signature for ATmega328P is 1E 95 14
+         Double check chip, or use -F to override this check.
+
+Oi. what even.
+Apparently, people just suggested in this forum post to change the avrdude
+configuration to recognize my ATmega's signature XD Seems legit. Lets try it.
+(https://www.avrfreaks.net/forum/difference-between-atmega328-328p-and-328pu?skey=expected%20signature%20for%20ATmega328P%20is%201E%2095%2014)
+
+'whereis avrdude' told me that my avrdude configuration file was in /etc/avrdude.conf
+
+So I sudo vimmed into it, and found the ATmega328P entry on line 8681. I changed the signature to be: 0x1e 0x95 0x0f
+
+And that sort of worked!
+This was the output of that:
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1e950f (probably m328p)
+avrdude: reading lfuse memory:
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: writing output file "<stdout>"
+0x0
+
+avrdude: safemode: Fuses OK (E:00, H:00, L:00)
+
+...I'm not entirely sure that the fuses should be '00'. In one forum post, they said part of the issue is avrdude using "safe mode". To disable safe mode, I added a -u to the command:
+
+avrdude -c arduino -p m328p -P /dev/ttyACM0 -v -u -U lfuse:r:-:h
+
+Humm, that didn't seem to do anything. The output file still reads "0x0".
+I am not entirely sure this is a huge issue, so I'm going to wrap up for the night, I figured out a *lot* of stuff.
+
+Next steps would likely be to do a little more research on this error, and possibly try writing one of the fuse bytes to see if it works. I'm not seeing a lot of worry about this error, so I may head straight to burning the fuse bytes.
