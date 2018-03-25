@@ -211,3 +211,156 @@ Humm, that didn't seem to do anything. The output file still reads "0x0".
 I am not entirely sure this is a huge issue, so I'm going to wrap up for the night, I figured out a *lot* of stuff.
 
 Next steps would likely be to do a little more research on this error, and possibly try writing one of the fuse bytes to see if it works. I'm not seeing a lot of worry about this error, so I may head straight to burning the fuse bytes.
+
+3-24-18
+
+ayyyyyyy
+
+So I found this great site: http://www.martyncurrey.com/arduino-atmega-328p-fuse-settings/
+
+And it makes burning the fuses look really easy....so I'ma try it.
+
+The fuses I need look like this:
+
+L: 0x62
+H: 0xD9
+E: 0xFF
+
+And he just adds an entry in "boards.txt" to take care of it. *genius*. Lets try this out...
+
+#####################################################################
+
+atmega328pbb.name=ATmega328P breadboard w/ internal 8MHz
+atmega328pbb.upload.protocal=stk500
+atmega328pbb.upload.maximum_size=32768
+atmega328pbb.upload.speed=57600
+atmega328pbb.upload.using=arduino:avrdude
+atmega328pbb.bootloader.low_fuses=0x62
+atmega328pbb.bootloader.high_fuses=0xd9
+atmega328pbb.bootloader.extended_fuses=0xFF
+atmega328pbb.bootloader.path=arduino:atmega
+atmega328pbb.bootloader.file=ATmgeaBOOT_168_atmega328_pro_8MHz.hex
+atmega328pbb.bootloader.unlock_bits=0x3F
+atmega328pbb.bootloader.lock_bits=0x0F
+atmega328pbb.build.mcu=atmega328p
+atmega328pbb.build.f_cpu=8000000L
+atmega328pbb.build.core=arduino:arduino
+atmega.build.variant/arduino:standard
+
+
+There's my custom entry. Lets run it and see how that does.
+
+The arduino UNO is still connected to my circuit, and still has the bootloader code on it. I got the same error as I did earlier:
+
+Error while burning bootloader: missing 'bootloader.tool' configuration parameter
+
+So I went back into boards.txt and changed this line:
+
+atmega328pbb.upload.using=arduino:avrdude
+
+to:
+
+atmega328pbb.bootloader.tool=arduino:avrdude
+
+restarted the ArduinoIDE, burned, and got this error:
+
+avrdude: can't open input file /home/thallia/Downloads/arduino-1.8.5-linux64/arduino-1.8.5/hardware/arduino/avr/bootloaders/ATmgeaBOOT_168_atmega328_pro_8MHz.hex: No such file or directory
+
+..which I should've fixed that...oh derp. "atmega" not "atmgea". *facepalm*.
+
+:oooo no errors!! woohoo! Okay, so the fuse bytes *should* have been changed with that. Let's see what avrdude did:
+
+avrdude: verifying ...                                   
+avrdude: 1 bytes of lock verified
+avrdude: reading input file "0xFF"
+avrdude: writing efuse (1 bytes):
+
+Writing | ##############################################$
+### | 100% 0.01s
+
+avrdude: 1 bytes of efuse written
+avrdude: verifying efuse memory against 0xFF:
+avrdude: load data efuse data from input file 0xFF:
+avrdude: input file 0xFF contains 1 bytes
+avrdude: reading on-chip efuse data:
+
+Reading | ##############################################$
+### | 100% 0.01s
+         User configuration file is "/home/thallia/.avrd$
+derc"
+
+avrdude: verifying ...
+avrdude: 1 bytes of efuse verified
+avrdude: reading input file "0xd9"
+avrdude: writing hfuse (1 bytes):
+
+Writing | ##############################################$
+### | 100% 0.01s
+
+avrdude: 1 bytes of hfuse written
+avrdude: verifying hfuse memory against 0xd9:
+avrdude: load data hfuse data from input file 0xd9:
+avrdude: input file 0xd9 contains 1 bytes
+avrdude: reading on-chip hfuse data:
+
+Reading | ##############################################$
+### | 100% 0.01s
+
+avrdude: verifying ...
+avrdude: 1 bytes of hfuse verified
+avrdude: reading input file "0x62"
+avrdude: writing lfuse (1 bytes):
+
+Writing | ##############################################$
+### | 100% 0.01s
+
+avrdude: 1 bytes of lfuse written
+avrdude: verifying lfuse memory against 0x62:
+avrdude: load data lfuse data from input file 0x62:
+avrdude: input file 0x62 contains 1 bytes
+avrdude: reading on-chip lfuse data:
+
+Reading | ###############################################
+### | 100% 0.01s
+
+avrdude: verifying ...
+avrdude: 1 bytes of lfuse verified
+
+avrdude done.  Thank you.
+
+
+
+duuuuuude.
+how come I didn't know it was this easy before?
+
+lets test out the microcontroller now!
+
+okay so looks like you actually have to have an "upload.tool" line in boards.txt or else it won't let you upload a thing.
+After that, it still wouldn't upload, giving me that annoying "programmer is not responding/not in sync" error.
+
+After looking around on Nick Gammon's site, if the "divide by 8" fuse bit is set, you can't upload programs...so now I gotta fix that.
+
+I went and changed the fuse byte from 0xD9 to 0xE2, which changes the CKDIV8 bit. When burning the bootloader though, it has an error.
+
+avrdude: verification error, first mismatch at byte 0x0000
+         0xc2 != 0xe2
+avrdude: verification error; content mismatch
+
+...hmm. I wonder why it's writing c and not e. Lets try programming it and see what happens.
+
+oh crud. I changed the high fuse not the low fuse. rip rip rip. Back to the boards.txt.....
+
+okay, that fixed it. Phew, I thought I may have bricked it there for a sec. *now* lets try programming it again...
+
+Oops, it looks like it's not actually using the bootloader, so it can't upload the program. That would make sense.
+
+This time I need to change the High Fuse byte to 0xD8 instead of 0xD9.
+Testing program uploading again.....
+and boom. It worked. :D
+
+turns out none of those were actually the errors lol, the UNO just needed its own atmega328p in it. *derp*
+
+The test circuit worked, and it drew the expected amount of current. WOOOHOOOO.
+major progress!
+
+Next steps: test the sleep code with the binary watch code.
