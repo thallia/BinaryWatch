@@ -6,7 +6,7 @@ Current board rev: *3.1*
 Supplies I went through for breadboard testing:
   * atmega328p-pu
   * sn74hc595n x2
-  * LEDs x20 (10 for breadboard, 10 for mock thru-hole)
+  * LEDs x10 
   * 16MHz external crystal
   * 32.768kHz external crystal
   * 2 22pF capacitors
@@ -21,19 +21,19 @@ Supplies for PCB:
   * (SMD) atmega328p-au 
   * 74hc595 SMD shift registers x2
   * coin cell battery + SMD battery holder
-  * LEDs SMD x10 (or flat top, whatever you prefer.)
-  * 32.768kHz SMD crystal
-  * SMD capacitors 22pF x2
+  * LEDs 1206 SMD x10 (or flat top, whatever you prefer.)
+  * 32.768kHz 0805 SMD crystal
+  * SMD capacitors 0805 22pF x2
   * 3 buttons
-  * 10k SMD resistors x1
-  * 2k SMD resistors x10 (in testing for LED brightness)
-  * PCB
+  * 10k SMD resistors 0805 x1
+  * 2k SMD resistors 0805 x10 (in testing for LED brightness)
+  * PCB (oshpark or easyEDA)
 
 PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Burned the bootloader and the new fuse bytes, finishing up tailoring the bwatch-clk source code to work along with the new hardware. New schematic in the works.
+**CURRENT TASK:** finished tailoring the code to work with the clock, need to debug the button situation. Finished final schematic. Need to order parts and route PCB.
 
 
 Blog Posts following development:
