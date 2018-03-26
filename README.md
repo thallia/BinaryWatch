@@ -18,24 +18,22 @@ Supplies I went through for breadboard testing:
   * arduino uno (for easier programming in the beginning)
   
 Supplies for PCB:
-  * atmega328p-pu
-  * 28 DIP socket
-  * in development: SMD atmega328p
+  * (SMD) atmega328p-au 
   * 74hc595 SMD shift registers x2
-  * coin cell battery + battery holder
-  * LEDs SMD x10
+  * coin cell battery + SMD battery holder
+  * LEDs SMD x10 (or flat top, whatever you prefer.)
   * 32.768kHz SMD crystal
   * SMD capacitors 22pF x2
-  * 2 SMD decoupling capacitors 0.1uF
   * 3 buttons
-  * 10k SMD resistors x11
+  * 10k SMD resistors x1
+  * 2k SMD resistors x10 (in testing for LED brightness)
   * PCB
 
 PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** the stuff got here, in the midst of setting fuse bytes for the ATmega328P to work with an external oscillator (as well as the internal 8MHz) so I can start working with the 32.768kHz crystal. This will allow me to try out my code for it XD
+**CURRENT TASK:** Burned the bootloader and the new fuse bytes, finishing up tailoring the bwatch-clk source code to work along with the new hardware. New schematic in the works.
 
 
 Blog Posts following development:
