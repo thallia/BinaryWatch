@@ -2,29 +2,25 @@
 *
 * written by: thallia
 * date: 3-14-17
+* last edit: 3-25-17
 * Specifically only using the 32kHz clock, adjusting the hardware to fit it.
-*
 *
 */
 #include <avr/sleep.h>
 #include <avr/power.h>
 
-const byte tick = 3;
-
-
 const int inHour = 7;     // hour button
 const int inMinute = 8;   // minute button
 const int inDisplay = 6;  // display button
-// find new OE pin
 const int outputEN = 2;   // enable chip signal
 const int clockP = 3;     // clock signal pin
 const int latchP = 4;     // latch signal pin
 const int dataP = 5;      // data write pin
 
 // Default date/time settings whenever program starts
-int second = 0;
-int minute = 0;
-int hour = 1;
+int seconD = 0;
+int minutE = 0;
+int houR = 1;
 int halfDay = 1;
 
 // interrupt on Timer 2 compare "A" completion - does nothing
@@ -63,10 +59,8 @@ void writeData(){
 void checkHour(){
   int hourButton = digitalRead(inHour);
   if(hourButton == LOW){
-    hour++;
-    second = 0;
-    delay(250);
-  } else {
+    houR++;
+    seconD = 0;
   }
 }
 
@@ -76,19 +70,17 @@ void checkHour(){
 void checkMin(){
   int minButton = digitalRead(inMinute);
   if(minButton == LOW){
-    minute++;
-    second = 0;
-    delay(250);
-  } else {
+    minutE++;
+    seconD = 0;
   }
 }
 
 // Integer --> LED signal (hours)
 // writes to the hour display
-void hourDisplay(int hour){
-  if(hour >= 1){
+void hourDisplay(int houR){
+  if(houR >= 1){
     for (int x = 3; x >= 0; x--){
-      int bit = bitRead(hour, x);
+      int bit = bitRead(houR, x);
         if(bit == 1){
           writeData();
         } else {
@@ -100,9 +92,9 @@ void hourDisplay(int hour){
 
 // integer --> LED signal (minutes)
 // writes to the minute display
-void minDisplay(int minute){
+void minDisplay(int minutE){
   for(int x = 5; x >= 0; x--){
-    int bit = bitRead(minute, x);
+    int bit = bitRead(minutE, x);
     if(bit == 1){
       writeData();
     } else {
@@ -126,12 +118,10 @@ void ampm(int state){
 // when disButton is LOW, writes to the LEDs for 10 seconds.
 void displayData(){
   ampm(halfDay);
-  minDisplay(minute);
-  hourDisplay(hour);
+  minDisplay(minutE);
+  hourDisplay(houR);
   latchTick();
   enableOutput(true);
-  delay(10000);
-  enableOutput(false);
 }
 
 // no input --> no output
@@ -150,7 +140,7 @@ void checkDisp(){
 
 void setup()
  {
-   //pinMode (tick, OUTPUT);
+
    pinMode(clockP, OUTPUT);
    pinMode(outputEN, OUTPUT);
    pinMode(latchP, OUTPUT);
@@ -193,6 +183,7 @@ void setup()
 
 void loop()
   {
+  enableOutput(false);
 
   // turn off brown-out enable in software
   MCUCR = bit(BODS) | bit(BODSE);
@@ -203,34 +194,41 @@ void loop()
 
   // we awoke! pulse the clock hand
   // digitalWrite(tick, ! digitalRead(tick));
-  second++;
+  seconD++;
   // one minute every 60sec
-  if(second >= 60){
-    minute++;
-    second = 0;
+  if(seconD >= 59){
+    minutE++;
+    seconD = 0;
   }
 
   // one hour every 60min
-  if(minute >= 60){
-    hour++;
-    minute = 0;
+  if(minutE >= 59){
+    houR++;
+    minutE = 0;
   }
 
   // halfDay every 12hrs
-  if(hour >= 13){
+  if(houR >= 13){
     halfDay++;
-    hour = 1;
-    minute = 1;
+    houR = 1;
+    minutE = 1;
   }
 
   // reset AM/PM
   if(halfDay >= 2){
     halfDay = 0;
-    hour = 1;
-    minute = 0;
+    houR = 1;
+    minutE = 0;
   }
-  checkHour();
-  checkMin();
-  checkDisp();
+
+  ampm(halfDay);
+  minDisplay(minutE);
+  hourDisplay(houR);
+  latchTick();
+  enableOutput(true);
+
+  //checkHour();
+  //checkMin();
+  //checkDisp();
 
 }  // end of loop: loop back, sleep, wake up after 1 second
