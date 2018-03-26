@@ -14,9 +14,9 @@ const byte tick = 3;
 
 const int inHour = 7;     // hour button
 const int inMinute = 8;   // minute button
-const int inDisplay = 2;  // display button
+const int inDisplay = 6;  // display button
 // find new OE pin
-const int outputEN = 6;   // enable chip signal
+const int outputEN = 2;   // enable chip signal
 const int clockP = 3;     // clock signal pin
 const int latchP = 4;     // latch signal pin
 const int dataP = 5;      // data write pin
@@ -121,16 +121,6 @@ void ampm(int state){
   }
 }
 
-// no input --> no output
-// check the display button to see if it has been pressed. If true, display the
-// LEDs.
-void checkDisp(){
-  int disButton = digitalRead(inDisplay);
-  if(disButton == LOW){
-    displayData();
-  } else {
-  }
-}
 
 // no input --> no output
 // when disButton is LOW, writes to the LEDs for 10 seconds.
@@ -143,6 +133,18 @@ void displayData(){
   delay(10000);
   enableOutput(false);
 }
+
+// no input --> no output
+// check the display button to see if it has been pressed. If true, display the
+// LEDs.
+void checkDisp(){
+  int disButton = digitalRead(inDisplay);
+  if(disButton == LOW){
+    displayData();
+  } else {
+  }
+}
+
 
 /* ------------------------------------------------------------------------- */
 
