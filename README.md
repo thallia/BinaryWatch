@@ -53,3 +53,5 @@ Blog Posts following development:
 **Mock Up PCB with coin cells + early schematic:** https://www.thalliatree.net/posts/mock-up-pcb-bw.html
 
 **Code - Part 3:** https://www.thalliatree.net/posts/code-p3-bw.html
+
+**Atmega328p 32.768kHz, sleep modes, and new schematic:** https://thalliatree.net/posts/atmega328p-32khz-sleep-modes-and-new-schematic.html
