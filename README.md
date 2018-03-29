@@ -33,7 +33,7 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** finished tailoring the code to work with the clock, need to debug the button situation. Finished final schematic. Need to order parts and route PCB.
+**CURRENT TASK:** Need to order parts andn finish the PCB design. Need to measure out dimensions to organize parts into. For button code, research button interrupts and programming Arduino registers.
 
 
 Blog Posts following development:
