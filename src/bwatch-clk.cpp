@@ -1,19 +1,20 @@
 /*
 *
 * written by: thallia
-* date: 3-14-17
-* last edit: 3-25-17
+* date: 3-14-18
+* last edit: 3-31-18
 * Specifically only using the 32kHz clock, adjusting the hardware to fit it.
 *
 */
 #include <avr/sleep.h>
 #include <avr/power.h>
 
-const int inHour = 7;     // hour button
-const int inMinute = 8;   // minute button
-const int inDisplay = 6;  // display button
-const int outputEN = 2;   // enable chip signal
-const int clockP = 3;     // clock signal pin
+const int inDisplay = 2;  // display button
+const int inHour = 6;     // hour button
+const int inMinute = 7;   // minute button
+
+const int outputEN = 0;   // enable chip signal
+const int clockP = 1;     // clock signal pin
 const int latchP = 4;     // latch signal pin
 const int dataP = 5;      // data write pin
 
@@ -131,8 +132,12 @@ void checkDisp(){
   int disButton = digitalRead(inDisplay);
   if(disButton == LOW){
     displayData();
-  } else {
   }
+}
+
+void checkTime(){
+  checkHour();
+  checkMin();
 }
 
 
@@ -227,8 +232,9 @@ void loop()
   latchTick();
   enableOutput(true);
 
-  //checkHour();
-  //checkMin();
-  //checkDisp();
+  checkHour();
+  checkMin();
+  checkDisp();
 
 }  // end of loop: loop back, sleep, wake up after 1 second
+

@@ -3,13 +3,13 @@
 
 ATMEGA **to** 74HC595
 
-Digital Pin 0 **to** OE (output enable) pin 13
+Digital Pin 0 (PCINT16/RXD) PD0 **to** OE (output enable) pin 13
 
-Digital Pin 1 **to** ST_CP (clock pin) pin 12
+Digital Pin 1 (PCINT17/TXD) PD1 **to** ST_CP (clock pin) pin 12
 
-Digital Pin 2 ((PCINT18/INT0) PD2) **to** inTime, inHour, inMinute
+Digital Pin 2 ((PCINT18/INT0) PD2) **to** inDisplay
 
-Digital Pin 3 (PCINT19/OC2B/INT1) PD3 **to** inDisplay 
+Digital Pin 3 (PCINT19/OC2B/INT1) PD3 **to** 
 
 Digital Pin 4 (PCINT20/XCK/T0) PD4 **to** SH_CP (latch pin) pin 11
 
@@ -50,8 +50,8 @@ Digital Pin 7 ((PCINT23/AIN1) PD7) **to** inMinute
 
 # External Clock
 
-- Two GNDed 22pF capacitors to 16MHz crystal to XTAL1 and XTAL2
+- Two GNDed 22pF capacitors to 16MHz crystal to XTAL1 and XTAL2 (if not using sleep modes)
 
 OR
 
-- Two GNDed 22pF caps to 32.768kHz crystal to XTAL1 and XTAL2
+- Two GNDed 22pF caps to 32.768kHz crystal to XTAL1 and XTAL2 (if using sleep modes & burned fuse bytes)
