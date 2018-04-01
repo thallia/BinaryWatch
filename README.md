@@ -33,7 +33,7 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Need to order parts andn finish the PCB design. Need to measure out dimensions to organize parts into. For button code, research button interrupts and programming Arduino registers.
+**CURRENT TASK:** Changing some final hardware pins in the schematic, then I can generate the PCB. Time buttons are working great, display button is the only dorking thing (can be changed without any more hardware alterations).
 
 
 Blog Posts following development:
