@@ -1,7 +1,7 @@
 # BinaryWatch
 My first project designing and creating *everything*. 
 
-Current board rev: *3.1*
+Current board rev: *4.1*
 
 Supplies I went through for breadboard testing:
   * atmega328p-pu
@@ -27,13 +27,13 @@ Supplies for PCB:
   * 3 buttons
   * 10k SMD resistors 0805 x1
   * 2k SMD resistors 0805 x10 (in testing for LED brightness)
-  * PCB (oshpark or easyEDA)
+  * PCB (oshpark) 
 
 PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** Changing some final hardware pins in the schematic, then I can generate the PCB. Time buttons are working great, display button is the only dorking thing (can be changed without any more hardware alterations).
+**CURRENT TASK:** PCB is routed and ordered. Parts are ordered and should come in the next week or so. Last thing to figure out is the display button.
 
 
 Blog Posts following development:
