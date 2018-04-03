@@ -20,10 +20,12 @@ Supplies I went through for breadboard testing:
 Supplies for PCB:
   * (SMD) atmega328p-au 
   * 74hc595 SMD shift registers x2
-  * coin cell battery + SMD battery holder
+  * JST right angle connector
+  * 400mAh Li-Po battery
   * LEDs 1206 SMD x10 (or flat top, whatever you prefer.)
-  * 32.768kHz 0805 SMD crystal
+  * 32.768kHz SC-32S SMD crystal
   * SMD capacitors 0805 22pF x2
+  * SMD capacitors 0805 12.5pF x2
   * 3 buttons
   * 10k SMD resistors 0805 x1
   * 2k SMD resistors 0805 x10 (in testing for LED brightness)
@@ -33,7 +35,7 @@ PCB designed on: eagleCAD
 
 
 
-**CURRENT TASK:** PCB is routed and ordered. Parts are ordered and should come in the next week or so. Last thing to figure out is the display button.
+**CURRENT TASK:** PCB is ordered and should ship by mid-April. (Oshpark highly recommended) Code is complete! Final project is to make a 3D watch case for the PCB and battery.
 
 
 Blog Posts following development:

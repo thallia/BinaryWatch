@@ -24,6 +24,8 @@ int minutE = 0;
 int houR = 1;
 int halfDay = 1;
 
+int checkDisplay = 0;
+
 // interrupt on Timer 2 compare "A" completion - does nothing
 EMPTY_INTERRUPT (TIMER2_COMPA_vect);
 
@@ -226,15 +228,16 @@ void loop()
     minutE = 0;
   }
 
-  ampm(halfDay);
-  minDisplay(minutE);
-  hourDisplay(houR);
-  latchTick();
-  enableOutput(true);
-
   checkHour();
   checkMin();
-  checkDisp();
 
+  checkDisplay = digitalRead(inDisplay);
+  if (checkDisplay == LOW){
+    ampm(halfDay);
+    minDisplay(minutE);
+    hourDisplay(houR);
+    latchTick();
+    enableOutput(true);
+  }
 }  // end of loop: loop back, sleep, wake up after 1 second
 
