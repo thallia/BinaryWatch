@@ -116,33 +116,6 @@ void ampm(int state){
   }
 }
 
-
-// no input --> no output
-// when disButton is LOW, writes to the LEDs for 10 seconds.
-void displayData(){
-  ampm(halfDay);
-  minDisplay(minutE);
-  hourDisplay(houR);
-  latchTick();
-  enableOutput(true);
-}
-
-// no input --> no output
-// check the display button to see if it has been pressed. If true, display the
-// LEDs.
-void checkDisp(){
-  int disButton = digitalRead(inDisplay);
-  if(disButton == LOW){
-    displayData();
-  }
-}
-
-void checkTime(){
-  checkHour();
-  checkMin();
-}
-
-
 /* ------------------------------------------------------------------------- */
 
 void setup()
