@@ -29,13 +29,13 @@ Supplies for PCB:
   * 3 buttons
   * 10k SMD resistors 0805 x1
   * 2k SMD resistors 0805 x10 (in testing for LED brightness)
-  * PCB (oshpark) 
+  * PCB (oshpark)
+  * 3D printed case (fusion360)
 
 PCB designed on: eagleCAD
+3D case designed on: fusion360
 
-
-
-**CURRENT TASK:** PCB is ordered and should ship by mid-April. (Oshpark highly recommended) Code is complete! Final project is to make a 3D watch case for the PCB and battery.
+**CURRENT TASK:** PCB and parts are on their way, and the 3D case should be printed on Tuesday (04/10)!
 
 
 Blog Posts following development:
@@ -57,3 +57,5 @@ Blog Posts following development:
 **Code - Part 3:** https://www.thalliatree.net/posts/code-p3-bw.html
 
 **Atmega328p 32.768kHz, sleep modes, and new schematic:** https://thalliatree.net/posts/atmega328p-32khz-sleep-modes-and-new-schematic.html
+
+**Final Code, Schematic, and PCB layout:** https://thalliatree.net/posts/final-code-schematic-and-pcb.html
