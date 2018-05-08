@@ -14,7 +14,7 @@ Supplies I went through for breadboard testing:
   * two buttons for configuring time
   * one button for sleep/wakeup
   * jumper wires
-  * resistors (1 10K, 10 220, 10 20k)
+  
   * arduino uno (for easier programming in the beginning)
   
 Supplies for PCB:
@@ -35,27 +35,29 @@ Supplies for PCB:
 PCB designed on: eagleCAD
 3D case designed on: fusion360
 
-**CURRENT TASK:** PCB and parts are on their way, and the 3D case should be printed on Tuesday (04/10)!
+**CURRENT TASK:** PCB is complete, the ATmega328P is programmed, need to do some clean up soldering work. Revised 3D printed case and will be printed 5-12-18
 
 
 Blog Posts following development:
 
-**Basis:**   https://www.thalliatree.net/posts/74dc595-texas-instruments-shift-reg-esp32.html
+**Basis:**  https://thalliatree.wordpress.com/2017/12/25/74hc595-texas-instruments-shift-registers/
 
-**Intro:**   https://www.thalliatree.net/posts/project-hype-binary-watch.html
+**Intro:**  https://thalliatree.wordpress.com/2018/01/01/project-hype-binary-wristwatch/
 
-**Breadboard Hardware (with Uno):**   https://www.thalliatree.net/posts/atmega328p-microcontroller-74hc595-shift-reg-setup-bw.html
+**Breadboard Hardware (with Uno):**   https://thalliatree.wordpress.com/2018/01/26/atmega328p-microcontroller-74hc595-shift-register-setup-and-test-binary-watch/
 
-**Code - Part 1:**   https://www.thalliatree.net/posts/code-p1-bw.html
+**Code - Part 1:**  https://thalliatree.wordpress.com/2018/01/29/code-part-1-binary-watch/
 
-**Code - Part 2:**   https://www.thalliatree.net/posts/code-p2-bw.html
+**Code - Part 2:**  https://thalliatree.wordpress.com/2018/01/31/code-part-2-binary-watch/
 
-**Breadboard Hardware (without Uno):** https://www.thalliatree.net/posts/prepping-the-atmega-hardware-test-bw.html
+**Breadboard Hardware (without Uno):**    https://www.thalliatree.net/posts/prepping-the-atmega-hardware-test-bw.html
 
-**Mock Up PCB with coin cells + early schematic:** https://www.thalliatree.net/posts/mock-up-pcb-bw.html
+**Mock Up PCB with coin cells + early schematic:**   https://thalliatree.wordpress.com/2018/02/05/mock-up-pcb-binary-watch/
 
-**Code - Part 3:** https://www.thalliatree.net/posts/code-p3-bw.html
+**Code - Part 3:**   https://thalliatree.wordpress.com/2018/03/16/code-part-3-binary-watch/
 
-**Atmega328p 32.768kHz, sleep modes, and new schematic:** https://thalliatree.net/posts/atmega328p-32khz-sleep-modes-and-new-schematic.html
+**Atmega328p 32.768kHz, sleep modes, and new schematic:**   https://thalliatree.wordpress.com/2018/03/26/atmega328p-32-768khz-sleep-modes-and-new-schematic-binary-watch/
 
-**Final Code, Schematic, and PCB layout:** https://thalliatree.net/posts/final-code-schematic-and-pcb.html
+**Final Code, Schematic, and PCB layout:**   https://thalliatree.wordpress.com/2018/04/03/final-code-schematic-and-pcb-binary-watch/
+
+**PCB 95% Complete:**   https://thalliatree.wordpress.com/2018/05/03/pcb-95-complete-binary-watch/
