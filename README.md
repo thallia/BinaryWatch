@@ -35,7 +35,7 @@ Supplies for PCB:
 PCB designed on: eagleCAD
 3D case designed on: fusion360
 
-**CURRENT TASK:** PCB is complete, the ATmega328P is programmed, need to do some clean up soldering work. Revised 3D printed case and will be printed 5-12-18
+**CURRENT TASK:** PCB is done. Works great, aside from the battery being disconnected every now and then. Whoops. Getting the 3D printed case tomorrow (5/12)
 
 
 Blog Posts following development:
