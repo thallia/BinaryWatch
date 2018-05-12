@@ -32,8 +32,10 @@ Supplies for PCB:
   * PCB (oshpark)
   * 3D printed case (fusion360)
 
-PCB designed on: eagleCAD
-3D case designed on: fusion360
+**PCB designed on:** eagleCAD
+
+
+**3D case designed on:** fusion360
 
 **CURRENT TASK:** PCB is done. Works great, aside from the battery being disconnected every now and then. Whoops. Getting the 3D printed case tomorrow (5/12)
 
